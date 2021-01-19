@@ -1,0 +1,159 @@
+/*****************APP*****************************/
+
+html{
+    height:100%;
+}
+
+.app_body{
+    width:100%;
+    height:100%;
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.app_container{
+    display:flex;
+    height:100%;
+}
+
+.app_sidebar{
+    flex-basis: 15%;
+    background-color: var(--blue_app);
+    height: 100%;
+    color: #ffffff;
+}
+
+.app_content{
+    flex-basis: 85%;
+    background-color: var(--gray_light);
+    height: 100%;
+}
+
+/**APP - SIDEBAR**/
+.app_sidebar_menu_item{
+    font-size: 0.875em;
+    text-align:left;
+    color: #eff5f5;
+    margin-top: 20px;
+}
+
+.app_sidebar_menu_item a{
+    margin-left: 5px;
+    text-decoration: none;
+    color: #eff5f5;
+}
+
+.app_sidebar_menu_item a:hover{
+    font-weight: bold;
+    cursor: pointer; 
+}
+
+.app_sidebar_menu_item_active{
+    color: var(--yellow) !important;
+}
+
+/**APP - DASHBOARD**/
+.main_dashboard_area{
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.main_dashboard_metric{
+    flex-basis: 22%;
+    text-align: center;
+    padding:1%;
+}
+
+.main_dashboard_metric_content{
+    background-color: #ffffff;
+    padding:2%;
+}
+
+.main_dashboard_metric_content p{
+    font-weight: bold;
+    font-size:1.2em;
+}
+
+/**APP - BOOK SEARCH**/
+.book_search{
+    display:flex;
+    align-items: center;
+    width: 100%;
+}
+
+.book_search_header{
+    flex-basis 10%;
+}
+
+.book_search_form{
+    flex-basis:50%;
+    margin: 0 5%;
+}
+
+.book_search_form_text{
+    width:80%;
+    margin-right: 5px;
+    border-radius:5px;
+    padding:0.7%;
+    font-size: 0.875em;
+    border:0.5px solid var(--gray);
+}
+
+.book_search_form_submit{
+    color: #ffffff;
+    font-size: 0.875em;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: var(--blue_dark);
+}
+
+.book_search_form_submit:hover{
+    cursor:pointer;
+}
+
+.books_list_header{
+    margin:1% 2%;
+}
+
+.books_list_header h2{
+    color: var(--blue);    
+}
+
+.books_list_article{
+    display:flex;
+    background-color: #ffffff;
+    margin: 0 2%;
+    text-align: center;
+    padding:1%;
+}
+
+.books_list{
+    flex-basis: 24%;
+    align-items: flex-start;
+    border-right:1px solid var(--gray_light);
+}
+
+.books_list:last-child{
+    border:none;
+}
+
+.books_list input{
+    align-items: flex-start;
+}
+
+@media(max-width:667px){
+    .app_sidebar{
+        flex-basis: 5%;
+        text-align:center;
+    }
+
+    .app_content{
+        flex-basis: 95%;
+    }
+
+    .main_header_nav_list_close, .app_sidebar_menu_item{
+        text-align:center;   
+    }
+}

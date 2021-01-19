@@ -1,0 +1,1 @@
+1. Error Reporting: alterar no php.ini para parâmetros de produção.
