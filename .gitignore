@@ -1,6 +1,8 @@
 vendor*
 notes*
 midias*
+composer.lock
+composer.phar
 
 # Compiled source #
 ###################
