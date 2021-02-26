@@ -1,7 +1,7 @@
 # MyLibrary
 
 Mylibrary is a book rental MVP. It allows users to quickly rental books and control deadlines/fines.
-It is a personal project.
+It includes external API consumption with CURL.
 
 
 ## Features
