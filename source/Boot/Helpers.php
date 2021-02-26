@@ -88,7 +88,7 @@ function str_title(string $string): string {
  * @return string
  */
 function str_price(?string $price): string {
-    return number_format((!empty($price) ? $price : 0), "2", ",", ".");
+    return "R$ ". number_format((!empty($price) ? $price : 0), "2", ",", ".");
 }
 
 /**

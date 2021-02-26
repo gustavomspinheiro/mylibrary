@@ -21,7 +21,11 @@ $(function () {
                 }
 
                 if (response.message) {
-                    $("form").prepend(response.message);
+                    $(form).prepend(response.message);
+                }
+
+                if (response.reload) {
+                    location.reload();
                 }
             },
             complete: function () {

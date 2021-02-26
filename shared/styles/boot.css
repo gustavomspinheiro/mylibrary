@@ -99,7 +99,7 @@ li{
 .button{
     background-color: var(--gray_light);
     padding: 10px 20px;
-    width: 40%;
+    width: 70%;
     border:1px solid var(--gray);
     border-radius: var(--round_light);
     font-weight: bold;
@@ -107,6 +107,8 @@ li{
     color: var(--gray_dark);
     display:block;
     margin: 10px auto;
+    font-size: 1em;
+    text-align:center;
 }
 
 .button:hover{

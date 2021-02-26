@@ -21,7 +21,7 @@ require __DIR__ . "/../../vendor/autoload.php";
         <header class="main_header">
             <div class="main_header_container">
                 <a class="main_header_logo" href="<?=url();?>">
-                    <img src="<?= image("images/lib-logo.png", 70); ?>" alt="Logo do buscador de CID" title="Logo do buscador de CID">
+                    <img src="<?= image("images/lib-logo.png", 50); ?>" alt="Logo do buscador de CID" title="Logo do buscador de CID">
                 </a>
                 <nav class="main_header_nav">
                     <span class="main_header_nav_mobile_menu icon-menu" data-action="open_mobile"></span>

@@ -26,9 +26,9 @@ require __DIR__ . "/../../vendor/autoload.php";
                         <ul class="app_sidebar_menu ">
                             <li><span class="main_header_nav_list_close icon-error"></span></li>
                             <li class="icon-dashboard app_sidebar_menu_item"><a href="<?= url("/app/");?>">Dashboard</a></li>
-                            <li class="icon-book app_sidebar_menu_item"><a href="<?= url("/app/livros");?>">Busca por Título</a></li>
-                            <li class="icon-tags app_sidebar_menu_item"><a>Busca por Categoria</a></li>
-                            <li class="icon-comunication app_sidebar_menu_item"><a>Sugestão de Livros</a></li>
+                            <li class="icon-book app_sidebar_menu_item"><a href="<?= url("/app/t/livros");?>">Busca por Título</a></li>
+                            <li class="icon-tags app_sidebar_menu_item"><a href="<?= url("/app/c/livros")?>">Busca por Categoria</a></li>
+                            <li class="icon-comunication app_sidebar_menu_item"><a href="<?= url("/app/sugestoes");?>">Sugestão de Livros</a></li>
                             <li class="icon-exit app_sidebar_menu_item"><a href="<?= url("/sair"); ?>">Sair</a></li>
                         </ul>
                     </div>

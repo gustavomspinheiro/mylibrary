@@ -11,7 +11,7 @@
                     <li><span class="icon-arrow-right"></span>Verifique se o livro desejado está disponível para aluguel</li>
                     <li><span class="icon-arrow-right"></span>Gerencie o prazo de devolução facilmente</li>
                 </ul>
-                <a data-modal=".main_modal" class="main_headline_button" href="<?= url("/cadastro")?>">Cadastrar</a>
+                <a data-modal=".main_modal" class="main_headline_button" href="<?= url("/cadastro") ?>">Cadastrar</a>
 
             </div>
 
@@ -34,9 +34,9 @@
                 <h3 class="main_highlights_title">Suspense</h3>
                 <span class="main_highlight_button icon-plus"></span>
                 <ul class="main_highlights_list">
-                    <li><span>Número: </span><span>Lorem ipsum</span></li>
-                    <li><span>Número: </span><span>Lorem ipsum</span></li>
-                    <li><span>Número: </span><span>Lorem ipsum</span></li>
+                    <li>Lorem ipsum</li>
+                    <li>Lorem ipsum</li>
+                    <li>Lorem ipsum</li>
                 </ul>
             </div>
 
@@ -44,9 +44,9 @@
                 <h3 class="main_highlights_title">Biografia</h3>
                 <span class="main_highlight_button icon-plus"></span>
                 <ul id="test" class="main_highlights_list">
-                    <li><span>Número: </span><span>Lorem ipsum</span></li>
-                    <li><span>Número: </span><span>Lorem ipsum</span></li>
-                    <li><span>Número: </span><span>Lorem ipsum</span></li>
+                    <li>Lorem ipsum</li>
+                    <li>Lorem ipsum</li>
+                    <li>Lorem ipsum</li>
                 </ul>
             </div>
 
@@ -54,9 +54,9 @@
                 <h3 class="main_highlights_title">Ação</h3>
                 <span class="main_highlight_button icon-plus"></span>
                 <ul class="main_highlights_list">
-                    <li><span>Número: </span><span>Lorem ipsum</span></li>
-                    <li><span>Número: </span><span>Lorem ipsum</span></li>
-                    <li><span>Número: </span><span>Lorem ipsum</span></li>
+                    <li>Lorem ipsum</li>
+                    <li>Lorem ipsum</li>
+                    <li>Lorem ipsum</li>
                 </ul>
             </div>
         </div>
@@ -71,38 +71,38 @@
 
         <article class="main_benefits_category">
             <header>
-                <h2 class="main_benefits_category_title">Hospitais</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                <h2 class="main_benefits_category_title">Bibliotecas</h2>
+                <p>Livros organizados e catalogados</p>
+                <p>Controle de inventário</p>
+                <p>Serviço adicional para oferecer aos consumidores</p>
             </header>
 
-            <img class="main_benefits_category_image" src="<?= image("images/hospital-benefits-cid-search.png", 400) ?>">
+            <img class="main_benefits_category_image" src="<?= image("images/lib-benefits-libbrary.png", 350) ?>">
 
         </article>
 
         <article class="main_benefits_category">
 
-            <img class="main_benefits_category_image" src="<?= image("images/researcher-benefits-cid-search.png", 400) ?>">
+            <img class="main_benefits_category_image main_benefits_category_second_image" src="<?= image("images/lib-benefits-student.png", 350) ?>">
 
-            <header style="text-align:right" class="align_text_right">
-                <h2 class="main_benefits_category_title">Pesquisadores</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            <header class="align_text_right">
+                <h2 class="main_benefits_category_title">Alunos</h2>
+                <p>Praticidade na escolha do livro</p>
+                <p>Controle digital de prazos de devolução e multas</p>
+                <p>Sugestão de livros para leitura</p>
             </header>
 
         </article>
 
         <article class="main_benefits_category">
             <header>
-                <h2 class="main_benefits_category_title">Médicos</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                <h2 class="main_benefits_category_title">Autores</h2>
+                <p>Livros disponíveis de maneira eficiente para serem consumidos</p>
+                <p>Organização de inventário dos livros nas instituições</p>
+                <p>Valorização de aspectos importantes do livro</p>
             </header>
 
-            <img class="main_benefits_category_image" src="<?= image("images/doctor-benefits-cid-search.png", 400) ?>">
+            <img class="main_benefits_category_image" src="<?= image("images/lib-benefits-publisher.png", 350) ?>">
 
         </article>
 
@@ -114,7 +114,7 @@
                 <h1 class="main_call_action_title">O que está esperando?</h1>
             </header>
             <h2 class="main_call_action_subtitle">Alugue seus livros preferidos com poucos cliques!</h2>
-            <p><a class="main_call_action_button button button_success">QUERO ALUGAR</a></p>
+            <p><a class="main_call_action_button button button_success" href="<?= url("/cadastro"); ?>">QUERO ALUGAR</a></p>
         </article>
     </section>
 </div>

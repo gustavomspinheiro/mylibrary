@@ -4,44 +4,43 @@ namespace Source\Core;
 
 use Source\Support\Message;
 
-abstract class Model
-{
-    /*** @var type (object | null)*/
+abstract class Model {
+    /*     * * @var type (object | null) */
+
     public $data;
 
-    /*** @var \PDOException | null*/
+    /*     * * @var \PDOException | null */
     public $fail;
 
-    /*** @var Message|null*/
+    /*     * * @var Message|null */
     public $message;
 
-    /*** @var type string*/
+    /*     * * @var type string */
     public $query;
 
-    /*** @var type string*/
+    /*     * * @var type string */
     public $terms;
 
-    /*** @var type string*/
+    /*     * * @var type string */
     public $params;
 
-    /*** @var type string*/
+    /*     * * @var type string */
     public $order;
 
-    /*** @var type string*/
+    /*     * * @var type string */
     public $limit;
 
-    /*** @var type string*/
+    /*     * * @var type string */
     public $offset;
 
-    /*** @var type string*/
+    /*     * * @var type string */
     public $entity;
 
-    /*** @var type array*/
+    /*     * * @var type array */
     public $protected;
 
-    /*** @var type array*/
+    /*     * * @var type array */
     public $required;
-
 
     /**
      * It requires a table inside the database to initiate, with it´s protected parameters as well as required ones.
@@ -50,8 +49,7 @@ abstract class Model
      * @param array $protected
      * @param array $required
      */
-    public function __construct(string $entity, array $protected, array $required)
-    {
+    public function __construct(string $entity, array $protected, array $required) {
         $this->entity = $entity;
         $this->protected = array_merge($protected, ['created_at', 'updated_at']);
         $this->required = $required;
@@ -64,14 +62,12 @@ abstract class Model
      * @param $name
      * @param $value
      */
-    public function __set($name, $value)
-    {
-        if(empty($this->data)){
+    public function __set($name, $value) {
+        if (empty($this->data)) {
             $this->data = new \stdClass();
         }
 
         $this->data->$name = $value;
-
     }
 
     /**
@@ -79,8 +75,7 @@ abstract class Model
      * @param $name
      * @return bool
      */
-    public function __isset($name): bool
-    {
+    public function __isset($name): bool {
         return isset($this->data->$name);
     }
 
@@ -89,8 +84,7 @@ abstract class Model
      * @param $name
      * @return string|null
      */
-    public function __get($name): ?string
-    {
+    public function __get($name): ?string {
         return (!empty($this->data->$name) ? $this->data->$name : null);
     }
 
@@ -98,8 +92,7 @@ abstract class Model
      * Returns data object
      * @return object|null
      */
-    public function data(): ?object
-    {
+    public function data(): ?object {
         return $this->data;
     }
 
@@ -107,8 +100,7 @@ abstract class Model
      * Returns message parameter.
      * @return Message|null
      */
-    public function message(): ?Message
-    {
+    public function message(): ?Message {
         return $this->message;
     }
 
@@ -116,14 +108,12 @@ abstract class Model
      * Returns the error or null
      * @return \PDOException|null
      */
-    public function fail(): ?\PDOException
-    {
+    public function fail(): ?\PDOException {
         return $this->fail;
     }
 
-    public function find(?string $terms = null, ?string $params = null, string $columns = "*")
-    {
-        if($terms){
+    public function find(?string $terms = null, ?string $params = null, string $columns = "*") {
+        if ($terms) {
             $this->query = "SELECT {$columns} FROM {$this->entity} WHERE {$terms}";
             parse_str($params, $this->params);
             return $this;
@@ -139,8 +129,7 @@ abstract class Model
      * @param string $columns
      * @return Model|null
      */
-    public function findById(int $id, string $columns = "*"): ?Model
-    {
+    public function findById(int $id, string $columns = "*"): ?Model {
         return $this->find("id = :id", "id={$id}", $columns)->fetch();
     }
 
@@ -149,8 +138,7 @@ abstract class Model
      * @param int $limit
      * @return $this
      */
-    public function limit(int $limit): Model
-    {
+    public function limit(int $limit): Model {
         $this->limit = " LIMIT {$limit}";
         return $this;
     }
@@ -161,8 +149,7 @@ abstract class Model
      * @param string $direction
      * @return $this
      */
-    public function order(string $order, string $direction = 'DESC'): Model
-    {
+    public function order(string $order, string $direction = 'DESC'): Model {
         $this->order = " ORDER BY {$order} {$direction}";
         return $this;
     }
@@ -172,8 +159,7 @@ abstract class Model
      * @param int $offset
      * @return $this
      */
-    public function offset(int $offset): Model
-    {
+    public function offset(int $offset): Model {
         $this->offset = " OFFSET {$offset}";
         return $this;
     }
@@ -183,24 +169,21 @@ abstract class Model
      * @param bool $all
      * @return array|mixed|null
      */
-    public function fetch(bool $all = false)
-    {
+    public function fetch(bool $all = false) {
         try {
-            $stmt = Connect::getInstance()->prepare($this->query.$this->order.$this->limit.$this->offset);
+            $stmt = Connect::getInstance()->prepare($this->query . $this->order . $this->limit . $this->offset);
             $stmt->execute($this->params);
 
-            if(!$stmt->rowCount()){
+            if (!$stmt->rowCount()) {
                 return null;
             }
 
-            if($all){
+            if ($all) {
                 return $stmt->fetchAll(\PDO::FETCH_CLASS, static::class);
             }
 
             return $stmt->fetchObject(static::class);
-        }
-
-        catch (\PDOException $exception){
+        } catch (\PDOException $exception) {
             $this->fail = $exception;
             return null;
         }
@@ -210,8 +193,7 @@ abstract class Model
      * Counts the return of a database query.
      * @return int|null
      */
-    public function count(): ?int
-    {
+    public function count(): ?int {
         $stmt = Connect::getInstance()->prepare($this->query);
         $stmt->execute($this->params);
         return $stmt->rowCount();
@@ -222,10 +204,9 @@ abstract class Model
      * @param array $data
      * @return array|null
      */
-    private function filter(array $data): ?array
-    {
+    private function filter(array $data): ?array {
         $filter = [];
-        foreach ($data as $key => $value){
+        foreach ($data as $key => $value) {
             $filter[$key] = (is_null($value) ? null : filter_var($value, FILTER_DEFAULT));
         }
 
@@ -237,19 +218,16 @@ abstract class Model
      * @param array $data
      * @return int|null
      */
-    protected function create(array $data): ?int
-    {
+    protected function create(array $data): ?int {
         try {
             $columns = implode(", ", array_keys($data));
-            $values = ":".implode(", :", array_keys($data));
+            $values = ":" . implode(", :", array_keys($data));
             $stmt = Connect::getInstance()->prepare("INSERT INTO {$this->entity}($columns) VALUES ($values)");
             $stmt->execute($this->filter($data));
 
+
             return Connect::getInstance()->lastInsertId();
-
-        }
-
-        catch (\PDOException $exception){
+        } catch (\PDOException $exception) {
             $this->fail = $exception;
             return null;
         }
@@ -262,21 +240,20 @@ abstract class Model
      * @param string $params
      * @return int|null
      */
-    protected function update(array $data, string $terms, string $params): ?int
-    {
+    protected function update(array $data, string $terms, string $params): ?int {
         try {
-           $dataSet = [];
-           foreach($data as $key => $value){
-               $dataSet[] = "{$key} = :{$key}";
-           }
+            $dataSet = [];
+            foreach ($data as $key => $value) {
+                $dataSet[] = "{$key} = :{$key}";
+            }
 
-           $dataSet = implode(", ", $dataSet);
-           parse_str($params, $params);
+            $dataSet = implode(", ", $dataSet);
+            parse_str($params, $params);
 
-           $stmt = Connect::getInstance()->prepare("UPDATE {$this->entity} SET {$dataSet} WHERE {$terms}");
-           $stmt->execute($this->filter(array_merge($data, $params)));
-           return ($stmt->rowCount() ?? 1);
-        }catch (\PDOException $exception){
+            $stmt = Connect::getInstance()->prepare("UPDATE {$this->entity} SET {$dataSet} WHERE {$terms}");
+            $stmt->execute($this->filter(array_merge($data, $params)));
+            return ($stmt->rowCount() ?? 1);
+        } catch (\PDOException $exception) {
             $this->fail = $exception;
             return null;
         }
@@ -288,11 +265,10 @@ abstract class Model
      * @param string $params
      * @return bool|null
      */
-    public function delete(string $terms, string $params):?bool
-    {
+    public function delete(string $terms, string $params): ?bool {
         try {
             $stmt = Connect::getInstance()->prepare("DELETE FROM {$this->entity} WHERE {$terms}");
-            if($params){
+            if ($params) {
                 parse_str($params, $params);
                 $stmt->execute($params);
                 return true;
@@ -300,10 +276,7 @@ abstract class Model
 
             $stmt->execute();
             return true;
-
-
-        }
-        catch (\PDOException $exception){
+        } catch (\PDOException $exception) {
             $this->fail = $exception;
             return null;
         }
@@ -313,9 +286,8 @@ abstract class Model
      * Destroy an active record.
      * @return bool
      */
-    public function destroy(): bool
-    {
-        if(empty($this->id)){
+    public function destroy(): bool {
+        if (empty($this->id)) {
             return false;
         }
 
@@ -326,11 +298,10 @@ abstract class Model
      * Checks if all required fields are considered in data.
      * @return bool
      */
-    protected function required(): bool
-    {
-        $dataArray = (array)$this->data();
-        foreach ($this->required as $field){
-            if(empty($dataArray[$field])){
+    protected function required(): bool {
+        $dataArray = (array) $this->data();
+        foreach ($this->required as $field) {
+            if (empty($dataArray[$field])) {
                 return false;
             }
         }
@@ -342,20 +313,22 @@ abstract class Model
      * Responsible for creating or updating a record on the database table.
      * @return bool
      */
-    public function save(): bool
-    {
+    public function save(): bool {
         //update data in the database
-        if(!empty($this->id)){
+        if (!empty($this->id)) {
             $id = $this->id;
             $this->update($this->safe(), "id = :id", "id={$this->id}");
-            if($this->fail()){
-               $this->message = (new Message())->error("Erro ao atualizar os dados. Verifique e tente novamente")->before("Oops! ");
-               return false;
+            if ($this->fail()) {
+                $this->message = (new Message())->success("Dados atualizados com sucesso!");
+                return true;
+            } else {
+                $this->message = (new Message())->error("Erro ao atualizar os dados. Verifique e tente novamente")->before("Oops! ");
+                return false;
             }
         }
         //create data in the database
         $id = $this->create($this->safe());
-        if($this->fail()){
+        if ($this->fail()) {
             $this->message = (new Message())->error("Erro ao cadastrar os dados. Verifique e tente novamente")->before("Oops! ");
             return false;
         }
@@ -367,13 +340,13 @@ abstract class Model
      * Unsets protected values from data array.
      * @return array|null
      */
-    protected function safe():?array
-    {
-        $safe = (array)$this->data;
-        foreach($this->protected as $protected){
+    protected function safe(): ?array {
+        $safe = (array) $this->data;
+        foreach ($this->protected as $protected) {
             unset($safe[$protected]);
         }
 
         return $safe;
     }
+
 }

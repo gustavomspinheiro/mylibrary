@@ -1,7 +1,0 @@
-<b>1. Configurações do sistema</b>
-
-	1.1 Back-end
-		a. Pasta Boot
-			- Helpers
-			- Config
-	1.2 Front-end

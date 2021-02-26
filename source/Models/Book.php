@@ -25,17 +25,13 @@ class Book extends Model {
     /**
      * Responsible for searching a certain book by title or summary
      * @param string $search
-     * @return array|null
+     * @return \Source\Models\Book|null
      */
-    public function bookSearch(string $search): ?array {
+    public function bookSearch(string $search): ?Book {
         $searchRefined = filter_var($search, FILTER_SANITIZE_STRIPPED);
-        $books = $this->find("MATCH(title, summary) AGAINST(:s)", "s={$searchRefined}")->fetch(true);
+        $books = $this->find("MATCH(title, summary) AGAINST(:s)", "s={$searchRefined}");
 
-        if ($books) {
-            return $books;
-        }
-
-        return null;
+        return $books ? $books : null;
     }
 
     /**
@@ -45,6 +41,19 @@ class Book extends Model {
     public function category(): ?Category {
         $category = new Category();
         return $category->categoryById($this->category);
+    }
+
+    /**
+     * Method responsible for searching the books of specific category
+     * @param string $category
+     * @return \Source\Models\Book|null
+     */
+    public function searchByCategory(string $category): ?Book {
+        $categoryRefined = filter_var($category, FILTER_SANITIZE_STRIPPED);
+        $categoryRev = (new Category())->find("category = :category", "category={$categoryRefined}", "*")->fetch();
+        $id = $categoryRev->id;
+        $books = $this->find("category = :category", "category={$id}", "*");
+        return $books ? $books : null;
     }
 
 }

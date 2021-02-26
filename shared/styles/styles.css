@@ -161,6 +161,26 @@ body{
     text-align: right;
 }
 
+/******************COMPONENTS******************/
+
+.paginator{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.paginator_item{
+    text-decoration: none;
+    font-size: 1em;
+    margin: 0 5px;
+    color: var(--blue);
+    font-weight: bold;
+}
+
+.paginator_active{
+    color: var(--blue_dark);
+}
+
+/******************END COMPONENTS******************/
 
 
 /******************WEB MAIN MENU******************/

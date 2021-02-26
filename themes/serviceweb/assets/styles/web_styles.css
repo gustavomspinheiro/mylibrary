@@ -101,6 +101,11 @@
     border-radius: 10px;
     padding: 3px;
     margin: 3% 7px 3% 7px;
+
+}
+
+.main_highlights_list{
+    text-align: center;
 }
 
 .main_highlight_button:hover{
@@ -197,5 +202,40 @@
     font-size: 1.2em;
 }
 
+/**MOBILE**/
+@media (max-width: 667px){
+
+    .main_banner_images{
+        display:none;
+    }
+
+    .main_headline{
+        flex-basis: 90%;
+    }
+
+    .main_benefits_category header{
+        flex-basis:100%;
+        text-align:center;
+    }
+
+    .main_benefits_category_image{
+        flex-basis:100%;
+        width: 250px;
+    }
+    
+    .main_benefits_category_second_image{
+        display:none;
+    }
+    
+
+    .main_benefits_category_title{
+        font-size: 2em;
+        color: var(--green_dark);
+    }
+
+
+
+
+}
 
 

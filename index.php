@@ -27,9 +27,16 @@ $router->namespace("source\Controllers");
 $router->group("/app");
 $router->get("/", "App:home");
 $router->get("/{name}", "App:library");
-$router->get("/livros", "App:books");
+$router->get("/{tipo}/livros", "App:books");
 $router->post("/pesquisa", "App:bookSearch");
-$router->get("/pesquisa/{search}", "App:bookSearchRefined");
+$router->get("/pesquisa/{search}/{page}", "App:bookSearchRefined");
+$router->post("/alugar", "App:bookRent");
+$router->get("/sugestoes", "App:suggestions");
+$router->post("/devolver/{order}", "App:returnBook");
+$router->post("/pesquisa-categoria", "App:categorySearch");
+$router->get("/pesquisa-categoria/{search}/{page}", "App:categorySearchRefined");
+
+
 
 /**
  * Error Routes
